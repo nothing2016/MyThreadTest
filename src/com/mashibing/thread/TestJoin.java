@@ -1,5 +1,8 @@
 package com.mashibing.thread;
 
+/**
+ * join 线程合并，在B线程中调用A.join()，表示A加入了B,必须让A先执行完成，再到B执行
+ */
 public class TestJoin {
 	public static void main(String[] args) {
 		final Thread subThread1 = new Thread(new Runner(), "子线程1");
@@ -16,11 +19,11 @@ public class TestJoin {
 				}
 				for (int i = 0; i < 10; i++) {
 					System.out.println("子线程2");
-//					try {
-//						Thread.sleep(3000);
-//					} catch (InterruptedException e) {
-//						e.printStackTrace();
-//					}
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
@@ -32,11 +35,11 @@ public class TestJoin {
 		}
 		for (int i = 0; i < 10; i++) {
 			System.out.println("我是主线程");
-//			try {
-//				Thread.sleep(2000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
 //		try {
@@ -53,12 +56,12 @@ class Runner extends Thread {
 	public void run() {
 		for (int i = 0; i < 10; i++) {
 			System.out.println(Thread.currentThread().getName());
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//				return;
-//			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				return;
+			}
 
 		}
 	}

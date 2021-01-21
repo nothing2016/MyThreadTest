@@ -4,7 +4,12 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Test {
+/**
+ * 依次让A.B.C线程执行，循环执行10次
+ *
+ * condition.await() 会让当前的线程挂起，condition.signal()会让当前线程回到运行态继续执行
+ */
+public class ReentrantLockTest {
 	public static void main(String[] args) {
 		final Business business = new Business();
 		new Thread(new Runnable() {
@@ -42,7 +47,7 @@ public class Test {
 
 	static class Business {
 
-		private Lock lock = new ReentrantLock();
+		private Lock lock = new java.util.concurrent.locks.ReentrantLock();
 		private Condition condition1 = lock.newCondition();
 		private Condition condition2 = lock.newCondition();
 		private Condition condition3 = lock.newCondition();
@@ -51,7 +56,7 @@ public class Test {
 		public void sub2(int i) {
 			lock.lock();
 			try {
-				while (should != 2) {
+				if (should != 2) {
 					try {
 						condition2.await();
 					} catch (InterruptedException e) {
@@ -74,7 +79,7 @@ public class Test {
 		public void sub3(int i) {
 			lock.lock();
 			try {
-				while (should != 3) {
+				if (should != 3) {
 					try {
 						condition3.await();
 					} catch (InterruptedException e) {
@@ -87,7 +92,12 @@ public class Test {
 				// }
 				System.out.println(Thread.currentThread().getName());
 				should = 1;
+				System.out.println(Thread.currentThread().getName() + "沉睡了5秒");
+				Thread.sleep(5000);
+				System.out.println(Thread.currentThread().getName() + "马上呼唤condition1");
 				condition1.signal();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			} finally {
 				lock.unlock();
 			}
@@ -96,9 +106,10 @@ public class Test {
 		public void sub1(int i) {
 			lock.lock();
 			try {
-				while (should != 1) {
+				if (should != 1) {
 					try {
 						condition1.await();
+						System.out.println(Thread.currentThread().getName() + "终于苏醒了");
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

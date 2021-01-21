@@ -1,5 +1,10 @@
 package com.mashibing.thread;
 
+/**
+ * 100个线程对i++
+ * 100个线程对i--
+ * 用synchronized对对象进行同步，实现线程安全
+ */
 public class MultiThread {
 	private static final SharedData data = new SharedData();
 

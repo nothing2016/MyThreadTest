@@ -1,5 +1,8 @@
 package com.mashibing.thread;
 
+/**
+ * 线程死锁的代码
+ */
 public class DeadThread extends Thread {
 	private static Object object1 = new Object();
 	//如果不是static的话，那么得到的两个线程得到的两个对象不是同一对象
