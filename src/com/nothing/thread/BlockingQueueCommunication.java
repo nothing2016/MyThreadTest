@@ -3,6 +3,9 @@ import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * 阻塞队列实现，主线程打印 1~100，然后子线程执行1~50,如此反复打印50边
+ */
 public class BlockingQueueCommunication {
 
 	/**

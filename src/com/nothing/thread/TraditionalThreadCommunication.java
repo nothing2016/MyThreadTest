@@ -1,5 +1,8 @@
 package com.nothing.thread;
 
+/**
+ * 使用传统的 wait和 notify进行线程间的通信
+ */
 public class TraditionalThreadCommunication {
 
 	public static void main(String[] args) {
@@ -9,6 +12,11 @@ public class TraditionalThreadCommunication {
 
 			@Override
 			public void run() {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				for (int i = 1; i <= 50; i++) {
 					business.sub(i);
 				}

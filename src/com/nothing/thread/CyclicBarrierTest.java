@@ -4,6 +4,9 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * CyclicBarrier演示：几个线程同时到达一个地方，并继续到下一个地方
+ */
 public class CyclicBarrierTest {
 
 	public static void main(String[] args) {
@@ -11,6 +14,7 @@ public class CyclicBarrierTest {
 		final CyclicBarrier cb = new CyclicBarrier(3);
 		for (int i = 0; i < 3; i++) {
 			Runnable runnable = new Runnable() {
+				@Override
 				public void run() {
 					try {
 						Thread.sleep((long) (Math.random() * 10000));

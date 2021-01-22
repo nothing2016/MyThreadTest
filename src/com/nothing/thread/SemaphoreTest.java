@@ -4,6 +4,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
+/**
+ * 信号量Semaphore的使用
+ */
 public class SemaphoreTest {
 	public static void main(String[] args) {
 		final Semaphore semaphore = new Semaphore(3);

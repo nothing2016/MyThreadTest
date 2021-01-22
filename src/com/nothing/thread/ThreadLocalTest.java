@@ -3,6 +3,9 @@ package com.nothing.thread;
 import java.util.Random;
 
 
+/**
+ * ThreadLocal的测试
+ */
 public class ThreadLocalTest {
 
 	

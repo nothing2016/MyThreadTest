@@ -4,12 +4,16 @@ import java.util.concurrent.Exchanger;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * exchanger 能将两个线程的值交换
+ */
 public class ExchangerTest {
 
 	public static void main(String[] args) {
 		ExecutorService service = Executors.newCachedThreadPool();
 		final Exchanger exchanger = new Exchanger();
 		service.execute(new Runnable() {
+			@Override
 			public void run() {
 				try {
 
@@ -26,6 +30,7 @@ public class ExchangerTest {
 			}
 		});
 		service.execute(new Runnable() {
+			@Override
 			public void run() {
 				try {
 

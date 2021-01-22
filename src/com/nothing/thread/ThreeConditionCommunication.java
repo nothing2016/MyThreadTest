@@ -4,7 +4,10 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ThreeConditinCommunication {
+/**
+ * 使用3个condition来进行三个线程的通信
+ */
+public class ThreeConditionCommunication {
 
 	public static void main(String[] args) {
 

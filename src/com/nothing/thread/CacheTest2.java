@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+ * 用HashMap来做缓存系统，但要自己进行同步,允许一个线程对缓存写数据，多个线程同时读
+ */
 public class CacheTest2 {
 	// 用HashMap来做缓存系统，但要自己进行同步,允许一个线程对缓存写数据，多个线程同时读
 	private static volatile Map<String, Object> cache = new HashMap<String, Object>();

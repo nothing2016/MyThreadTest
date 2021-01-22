@@ -4,6 +4,9 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * CountDownLatch的使用
+ */
 public class CountDownLatchTest {
 	public static void main(String[] args) {
 		ExecutorService service = Executors.newCachedThreadPool();
@@ -11,6 +14,7 @@ public class CountDownLatchTest {
 		final CountDownLatch cdAnswer = new CountDownLatch(3);
 		for (int i = 0; i < 3; i++) {
 			Runnable runnable = new Runnable() {
+				@Override
 				public void run() {
 					try {
 						System.out.println("线程"

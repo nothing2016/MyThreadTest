@@ -3,6 +3,9 @@ package com.nothing.thread;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Lock和synchronized不能混合使用
+ */
 public class LockTest {
 
 	public static void main(String[] args) {

@@ -2,11 +2,15 @@ package com.nothing.thread;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * 阻塞队列演示，两个线程往队列加数据，两个线程从队列取数据
+ */
 public class BlockingQueueTest {
 	public static void main(String[] args) {
 		final BlockingQueue queue = new ArrayBlockingQueue(3);
 		for(int i=0;i<2;i++){
 			new Thread(){
+				@Override
 				public void run(){
 					while(true){
 						try {
@@ -26,6 +30,7 @@ public class BlockingQueueTest {
 		}
 		
 		new Thread(){
+			@Override
 			public void run(){
 				while(true){
 					try {

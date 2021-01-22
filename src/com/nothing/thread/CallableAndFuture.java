@@ -9,6 +9,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * future 和 callable的演示
+ */
 public class CallableAndFuture {
 
 	public static void main(String[] args) {
@@ -35,7 +38,6 @@ public class CallableAndFuture {
 				return "hai";
 			}
 		});
-
 		System.out.println("异步调用中·········");
 		try {
 			System.out.println("得到的结果：" + future.get());
