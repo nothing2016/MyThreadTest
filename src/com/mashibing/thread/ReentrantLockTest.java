@@ -56,7 +56,9 @@ public class ReentrantLockTest {
 		public void sub2(int i) {
 			lock.lock();
 			try {
-				if (should != 2) {
+				// 调用await方法时，建议全部使用while而不是if,因为如果时多个线程signal的时候，有可能是一个捣乱的线程执行了condition3.signal();但却没有调用 should = 3
+				// 所以需要再判断一次，
+				while (should != 2) {
 					try {
 						condition2.await();
 					} catch (InterruptedException e) {
@@ -79,7 +81,7 @@ public class ReentrantLockTest {
 		public void sub3(int i) {
 			lock.lock();
 			try {
-				if (should != 3) {
+				while (should != 3) {
 					try {
 						condition3.await();
 					} catch (InterruptedException e) {
@@ -106,7 +108,7 @@ public class ReentrantLockTest {
 		public void sub1(int i) {
 			lock.lock();
 			try {
-				if (should != 1) {
+				while (should != 1) {
 					try {
 						condition1.await();
 						System.out.println(Thread.currentThread().getName() + "终于苏醒了");

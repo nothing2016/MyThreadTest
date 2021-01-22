@@ -1,5 +1,8 @@
 package com.mashibing.thread;
 
+/**
+ * 线程分组很少用，只要知道有这个逻辑分组就可以了
+ */
 public class TestThreadGroup {  
   
     /** 
@@ -7,7 +10,7 @@ public class TestThreadGroup {
      */  
     public static void main(String[] args) {  
         // TODO Auto-generated method stub  
-        ThreadGroup tg1=new ThreadGroup("thread_group1");  
+        ThreadGroup tg1=new ThreadGroup("thread_group1");
         Thread thread1=new Thread(tg1,"thread1");  
           
         Thread thread2=new Thread(tg1,"thread2");  

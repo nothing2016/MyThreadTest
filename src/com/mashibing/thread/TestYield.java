@@ -1,5 +1,8 @@
 package com.mashibing.thread;
 
+/**
+ * 高风亮节的让出cpu的执行时间，但下一秒又同时去抢占cpu
+ */
 public class TestYield {
 	public static void main(String[] args) {
 		MyThread t1 = new  MyThread("t1");
