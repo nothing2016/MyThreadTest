@@ -9,7 +9,6 @@ import java.util.List;
  * @date 2021-01-21 18:12
  */
 public class Buffer {
-    public static Buffer mBuf = new Buffer();
     private static final int MAX_CAPACITY = 1;
     private List innerList = new ArrayList<>(MAX_CAPACITY);
 

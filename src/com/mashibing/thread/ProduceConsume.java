@@ -8,35 +8,36 @@ import java.util.List;
  *
  * 如果使用if(Buffer.mBuf.isFull()),会导致IndexOutOfBoundsException()异常
  * 如果使用notify则很可能会导致死锁
+ *
  */
 public class ProduceConsume {
 
+    private final Buffer buffer = new Buffer();
     public void produce() {
         synchronized (this) {
-            // 这里的Buffer没有任何的同步，怎么保证mBuf对象的可见性的呢？
-            // 因为目前代码是正常的，所以只能先理解为: 只要synchronized修饰的方法或方法块，里面的所有对象数据都会进行同步，这样就保证了可见性
-            while (Buffer.mBuf.isFull()) {
+            // 这里锁住了this,buffer是this的一个成员变量，当然也就锁住了，并保持了可见性
+            while (buffer.isFull()) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            Buffer.mBuf.add();
+            buffer.add();
             notifyAll();
         }
     }
 
     public void consume() {
         synchronized (this) {
-            while (Buffer.mBuf.isEmpty()) {
+            while (buffer.isEmpty()) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            Buffer.mBuf.remove();
+            buffer.remove();
             notifyAll();
         }
     }
